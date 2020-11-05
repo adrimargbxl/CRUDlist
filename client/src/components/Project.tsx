@@ -1,11 +1,20 @@
-import React from 'react'
+import React from "react";
 
-const Project: React.FC = () => {
+interface Props {
+  name: string;
+  enterprise: string;
+  collaborators?: {
+    name: string;
+    email: string;
+  }[];
+}
+
+const Project: React.FC<Props> = ({ name, collaborators }) => {
   return (
     <div>
       <div>
-        <div>Project name</div>
-        <div>number of collaborators</div>
+        <div>{name}</div>
+        <div>{collaborators ? collaborators.length + 1 : 0} Collaborators</div>
       </div>
       <div>
         <div>add</div>
@@ -13,7 +22,7 @@ const Project: React.FC = () => {
         <div>delete</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Project
+export default Project;

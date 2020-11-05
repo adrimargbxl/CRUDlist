@@ -1,6 +1,6 @@
-import React from 'react'
-import ProjectsList from './components/ProjectsList'
-import Title from './components/Title'
+import React from "react";
+import ProjectsList from "./components/ProjectsList";
+import Title from "./components/Title";
 
 const App: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const App: React.FC = () => {
       <Title />
       <ProjectsList />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

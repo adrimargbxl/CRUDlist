@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const Title: React.FC = () => {
   return (
@@ -6,8 +6,7 @@ const Title: React.FC = () => {
       Welcome to your <br></br>
       projects board
     </div>
-  )
-}
+  );
+};
 
-export default Title
-
+export default Title;
