@@ -1,0 +1,31 @@
+.projectContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.project__title {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
+}
+
+.project__collaborators {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.4px;
+  color: rgba(0, 0, 0, 0.64);
+  margin-bottom: 16px;
+}
+
+.projectOptions {
+  display: flex;
+}
+
+.projectOptions__icon {
+  margin-left: 21px;
+  cursor: pointer;
+}

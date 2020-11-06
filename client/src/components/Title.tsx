@@ -1,8 +1,9 @@
 import React from "react";
+import "./Title.css";
 
 const Title: React.FC = () => {
   return (
-    <div>
+    <div className="title">
       Welcome to your <br></br>
       projects board
     </div>

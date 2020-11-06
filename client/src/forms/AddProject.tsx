@@ -3,11 +3,13 @@ import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 
 interface MyFormValues {
+  id: string;
   name: string;
   enterprise: string;
 }
 
 interface Projects {
+  id: string;
   name: string;
   enterprise: string;
   collaborators?: {
@@ -18,20 +20,22 @@ interface Projects {
 
 interface Props {
   handleSubmit: (value: Projects) => void;
+  setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const validate = (values: MyFormValues) => {
   const errors = { name: "", enterprise: "" };
   if (!values.name) {
-    errors.name = "required";
+    errors.name = "Cannot be blank";
   }
   if (!values.enterprise) {
-    errors.enterprise = "required";
+    errors.enterprise = "Cannot be blank";
   }
   return errors;
 };
 
 const initialValues: MyFormValues = {
+  id: "",
   name: "",
   enterprise: ""
 };
@@ -41,7 +45,7 @@ const ProjectSchema = Yup.object().shape({
   enterprise: Yup.string().required("Required")
 });
 
-const AddProject: React.FC<Props> = ({ handleSubmit }) => {
+const AddProject: React.FC<Props> = ({ handleSubmit, setModalIsOpen }) => {
   return (
     <div>
       <div>Add Project</div>
@@ -51,6 +55,7 @@ const AddProject: React.FC<Props> = ({ handleSubmit }) => {
         onSubmit={(values, actions) => {
           handleSubmit(values);
           actions.setSubmitting(false);
+          setModalIsOpen(false);
         }}
       >
         {({ errors, touched }) => (
