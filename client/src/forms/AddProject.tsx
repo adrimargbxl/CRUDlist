@@ -1,4 +1,5 @@
 import React from "react";
+import "./AddProject.css";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 
@@ -47,31 +48,33 @@ const ProjectSchema = Yup.object().shape({
 
 const AddProject: React.FC<Props> = ({ handleSubmit, setModalIsOpen }) => {
   return (
-    <div>
-      <div>Add Project</div>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={ProjectSchema}
-        onSubmit={(values, actions) => {
-          handleSubmit(values);
-          actions.setSubmitting(false);
-          setModalIsOpen(false);
-        }}
-      >
-        {({ errors, touched }) => (
-          <Form>
-            <label htmlFor="name">Project's name</label>
-            <Field type="text" id="name" name="name"></Field>
-            {errors.name && touched.name ? <div>{errors.name}</div> : null}
-            <label htmlFor="enterprise">Enterprise</label>
-            <Field type="text" id="enterprise" name="enterprise"></Field>
-            {errors.enterprise && touched.enterprise ? (
-              <div>{errors.enterprise}</div>
-            ) : null}
-            <button type="submit">Add project</button>
-          </Form>
-        )}
-      </Formik>
+    <div className="addProjectContainer">
+      <div className="AddProjectTitle">Add Project</div>
+      <div className="AddProjectForm">
+        <Formik
+          initialValues={initialValues}
+          validationSchema={ProjectSchema}
+          onSubmit={(values, actions) => {
+            handleSubmit(values);
+            actions.setSubmitting(false);
+            setModalIsOpen(false);
+          }}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              <label htmlFor="name">Project's name</label>
+              <Field type="text" id="name" name="name"></Field>
+              {errors.name && touched.name ? <div>{errors.name}</div> : null}
+              <label htmlFor="enterprise">Enterprise</label>
+              <Field type="text" id="enterprise" name="enterprise"></Field>
+              {errors.enterprise && touched.enterprise ? (
+                <div>{errors.enterprise}</div>
+              ) : null}
+              <button type="submit">Add project</button>
+            </Form>
+          )}
+        </Formik>
+      </div>
     </div>
   );
 };

@@ -3,6 +3,13 @@ import Modal from "react-modal";
 import "./ModalAddProject.css";
 import AddProject from "../forms/AddProject";
 
+const customStyles = {
+  content: {
+    width: "500px",
+    borderRadius: "25px"
+  }
+};
+
 interface Projects {
   id: string;
   name: string;
@@ -23,10 +30,14 @@ const ModalAddProject: React.FC<Props> = ({ handleSubmit }) => {
   return (
     <div>
       <div onClick={() => setModalIsOpen(true)}>
-        {" "}
         <img src={plusIcon} alt="" />
       </div>
-      <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+      <Modal
+        portalClassName="modal"
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        style={customStyles}
+      >
         <button onClick={() => setModalIsOpen(false)}>X</button>
         <AddProject
           setModalIsOpen={setModalIsOpen}
