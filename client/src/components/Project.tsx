@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import AddProject from "../forms/AddProject";
+import ModalTemplate from "../modals/ModalTemplate";
 import "./Project.css";
 
-interface Props {
+interface Projects {
   id: string;
   name: string;
   enterprise: string;
@@ -9,25 +11,30 @@ interface Props {
     name: string;
     email: string;
   }[];
+}
+
+interface Props {
+  projectItem: Projects;
   handleDelete: (id: string) => void;
+  handleSubmit: (value: Projects) => void;
 }
 
 const Project: React.FC<Props> = ({
-  id,
-  name,
-  collaborators,
-  handleDelete
+  projectItem,
+  handleDelete,
+  handleSubmit
 }) => {
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const deleteIcon: string = require("../assets/delete.svg").default;
   const addCollaboratorIcon: string = require("../assets/addCollaborator.svg")
     .default;
-  const editIcon: string = require("../assets/edit.svg").default;
   return (
     <div className="projectContainer">
       <div className="project">
-        <div className="project__title">{name}</div>
+        <div className="project__title">{projectItem.name}</div>
         <div className="project__collaborators">
-          {collaborators ? collaborators.length + 1 : 0} Collaborators
+          {projectItem.collaborators ? projectItem.collaborators.length + 1 : 0}{" "}
+          Collaborators
         </div>
       </div>
       <div className="projectOptions">
@@ -35,11 +42,23 @@ const Project: React.FC<Props> = ({
           <img src={addCollaboratorIcon} alt="" />
         </div>
         <div className="projectOptions__icon">
-          <img src={editIcon} alt="" />
+          <ModalTemplate
+            modalIsOpen={modalIsOpen}
+            setModalIsOpen={setModalIsOpen}
+            icon={"edit"}
+            form={
+              <AddProject
+                title="Edit Project Name"
+                setModalIsOpen={setModalIsOpen}
+                handleSubmit={handleSubmit}
+                projects={projectItem}
+              />
+            }
+          />
         </div>
         <div
           onClick={() => {
-            handleDelete(id);
+            handleDelete(projectItem.id);
           }}
           className="projectOptions__icon"
         >

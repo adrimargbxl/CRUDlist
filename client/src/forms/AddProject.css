@@ -1,3 +1,59 @@
-.addProjectContainer {
+.addProjectHeaderContainer {
   display: flex;
+  justify-content: space-between;
+}
+
+.addProjectHeaderContainer__title {
+  margin-bottom: 41px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+  margin-right: 7px;
+  margin-bottom: 20px;
+}
+
+.field label {
+  margin-bottom: 3px;
+  line-height: 22px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.field__box {
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  height: 32px;
+}
+
+input::placeholder {
+  padding-left: 12px;
+}
+
+.field__error {
+  margin-top: 3px;
+  margin-left: 5px;
+  color: #ffa702;
+  font-size: 14px;
+}
+
+.buttonContainer {
+  display: flex;
+  align-self: flex-end;
+}
+
+.form__button {
+  width: 100px;
+  height: 32px;
+  margin-top: 15px;
+  padding: 5px;
+  border-radius: 25px;
+  background-color: #009eff;
+  color: #ffffff;
+  border: none;
+  float: right;
 }

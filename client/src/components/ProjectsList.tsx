@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./ProjectList.css";
-import ModalAddProject from "../modals/ModalAddProject";
+import ModalTemplate from "../modals/ModalTemplate";
 import Project from "./Project";
+import AddProject from "../forms/AddProject";
 
 interface Projects {
   id: string;
@@ -15,6 +16,7 @@ interface Projects {
 
 const ProjectsList: React.FC = () => {
   const [projects, setProjects] = useState<Projects[]>([]);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   const handleSubmit = (value: Projects) => {
     value.id = Math.random().toString(36).substr(2, 9);
@@ -30,8 +32,13 @@ const ProjectsList: React.FC = () => {
   };
 
   const listOfProjects = projects.length ? (
-    projects.map((el, i) => (
-      <Project key={i} handleDelete={handleDelete} {...el} />
+    projects.map((project, i) => (
+      <Project
+        key={i}
+        handleDelete={handleDelete}
+        projectItem={project}
+        handleSubmit={handleSubmit}
+      />
     ))
   ) : (
     <div>please add project</div>
@@ -42,7 +49,18 @@ const ProjectsList: React.FC = () => {
       <div className="listContainer__header">
         <div className="listContainer__header__title">Projects</div>
         <div className="listContainer__header__modal">
-          <ModalAddProject handleSubmit={handleSubmit} />
+          <ModalTemplate
+            modalIsOpen={modalIsOpen}
+            setModalIsOpen={setModalIsOpen}
+            icon={"plus"}
+            form={
+              <AddProject
+                title={"Add Project"}
+                setModalIsOpen={setModalIsOpen}
+                handleSubmit={handleSubmit}
+              />
+            }
+          />
         </div>
       </div>
       <div className="listContainer__list">{listOfProjects}</div>
