@@ -8,10 +8,15 @@ interface Projects {
   id: string;
   name: string;
   enterprise: string;
-  collaborators?: {
+  collaborators: {
     name: string;
     email: string;
   }[];
+}
+
+interface Collaborator {
+  name: string;
+  email: string;
 }
 
 const ProjectsList: React.FC = () => {
@@ -19,8 +24,26 @@ const ProjectsList: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   const handleSubmit = (value: Projects) => {
-    value.id = Math.random().toString(36).substr(2, 9);
-    setProjects([...projects, value]);
+    if (value.id) {
+      const newProjects = projects.map((project) => {
+        return project.id === value.id ? value : project;
+      });
+      setProjects([...newProjects]);
+    } else {
+      value.id = Math.random().toString(36).substr(2, 9);
+      setProjects([...projects, value]);
+    }
+  };
+
+  const handleAddCollaborator = (id: string, value: Collaborator) => {
+    const newProjectsArr = projects.map((project) => {
+      if (project.id === id) {
+        project.collaborators.push(value);
+        return project;
+      }
+      return project;
+    });
+    setProjects([...newProjectsArr]);
   };
 
   const handleDelete = (id: string) => {
@@ -38,6 +61,7 @@ const ProjectsList: React.FC = () => {
         handleDelete={handleDelete}
         projectItem={project}
         handleSubmit={handleSubmit}
+        handleAddCollaborator={handleAddCollaborator}
       />
     ))
   ) : (
@@ -55,6 +79,7 @@ const ProjectsList: React.FC = () => {
             icon={"plus"}
             form={
               <AddProject
+                buttonText={"Add Project"}
                 title={"Add Project"}
                 setModalIsOpen={setModalIsOpen}
                 handleSubmit={handleSubmit}

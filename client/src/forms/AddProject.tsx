@@ -7,13 +7,17 @@ interface MyFormValues {
   id: string;
   name: string;
   enterprise: string;
+  collaborators: {
+    name: string;
+    email: string;
+  }[];
 }
 
 interface Projects {
   id: string;
   name: string;
   enterprise: string;
-  collaborators?: {
+  collaborators: {
     name: string;
     email: string;
   }[];
@@ -23,6 +27,7 @@ interface Props {
   handleSubmit: (value: Projects) => void;
   setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   title: string;
+  buttonText: string;
   projects?: Projects;
 }
 
@@ -35,14 +40,16 @@ const AddProject: React.FC<Props> = ({
   handleSubmit,
   setModalIsOpen,
   title,
-  projects
+  projects,
+  buttonText
 }) => {
   const closeIcon: string = require("../assets/close.svg").default;
 
   const initialValues: MyFormValues = {
     id: projects ? projects.id : "",
     name: projects ? projects.name : "",
-    enterprise: projects ? projects.name : ""
+    enterprise: projects ? projects.enterprise : "",
+    collaborators: projects ? projects.collaborators : []
   };
 
   return (
@@ -67,7 +74,7 @@ const AddProject: React.FC<Props> = ({
             <div className="field">
               <label htmlFor="name">Project's name</label>
               <Field
-                className={"field__box"}
+                className="field__box"
                 placeholder="e.g: Spotlify"
                 type="text"
                 id="name"
@@ -80,7 +87,7 @@ const AddProject: React.FC<Props> = ({
             <div className="field">
               <label htmlFor="enterprise">Enterprise</label>
               <Field
-                className={"field__box"}
+                className="field__box"
                 placeholder="Quop"
                 type="text"
                 id="enterprise"
@@ -92,7 +99,7 @@ const AddProject: React.FC<Props> = ({
               ) : null}
             </div>
             <button className="form__button" type="submit">
-              Add project
+              {buttonText}
             </button>
           </Form>
         )}

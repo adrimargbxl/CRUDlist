@@ -22,7 +22,7 @@ const customStyles = {
 interface Props {
   modalIsOpen: boolean;
   setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  form: React.ReactNode;
+  form?: React.ReactNode;
   icon: string;
 }
 
