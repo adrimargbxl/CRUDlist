@@ -1,30 +1,12 @@
 import React from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
-
-interface MyFormValues {
-  email: string;
-  name: string;
-}
-
-interface Projects {
-  id: string;
-  name: string;
-  enterprise: string;
-  collaborators: {
-    name: string | undefined;
-    email: string;
-  }[];
-}
-
-interface CollaboratorProp {
-  name: string;
-  email: string;
-}
+import faker from "faker";
+import { ProjectType, CollaboratorType } from "../types";
 
 interface Props {
-  projectItem: Projects;
-  handleAddCollaborator: (id: string, value: CollaboratorProp) => void;
+  projectItem: ProjectType;
+  handleAddCollaborator: (id: string, value: CollaboratorType) => void;
 }
 
 const ProjectSchema = Yup.object().shape({
@@ -35,8 +17,9 @@ const AddCollaborator: React.FC<Props> = ({
   projectItem,
   handleAddCollaborator
 }) => {
-  const initialValues: MyFormValues = {
-    name: "",
+  const initialValues: CollaboratorType = {
+    image: faker.image.avatar(),
+    name: faker.name.findName(),
     email: ""
   };
   const addCollaboratorIcon: string = require("../assets/addCollaboratorFormButton.svg")

@@ -1,39 +1,32 @@
 import React from "react";
 import AddCollaborator from "../forms/AddCollaborator";
 import Collaborator from "./Collaborator";
-
-interface Projects {
-  id: string;
-  name: string;
-  enterprise: string;
-  collaborators: {
-    name: string;
-    email: string;
-  }[];
-}
-
-interface CollaboratorProp {
-  name: string;
-  email: string;
-}
+import { ProjectType, CollaboratorType } from "../types";
 
 interface Props {
-  projectItem: Projects;
-  handleAddCollaborator: (id: string, value: CollaboratorProp) => void;
+  projectItem: ProjectType;
+  handleAddCollaborator: (id: string, value: CollaboratorType) => void;
+  handleDeleteCollaborator: (id: string, email: string) => void;
 }
 
 const CollaboratorList: React.FC<Props> = ({
   projectItem,
-  handleAddCollaborator
+  handleAddCollaborator,
+  handleDeleteCollaborator
 }) => {
-  const listOfCollaborators = projectItem.collaborators ? (
+  const listOfCollaborators = projectItem.collaborators.length ? (
     projectItem.collaborators.map((item) => {
-      return <Collaborator projectItem={item} />;
+      return (
+        <Collaborator
+          projectItem={item}
+          projectID={projectItem.id}
+          handleDeleteCollaborator={handleDeleteCollaborator}
+        />
+      );
     })
   ) : (
     <div>no collaborators</div>
   );
-
   return (
     <div>
       <div className="collaborators__title">User Settings</div>

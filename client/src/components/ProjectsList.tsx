@@ -3,27 +3,13 @@ import "./ProjectList.css";
 import ModalTemplate from "../modals/ModalTemplate";
 import Project from "./Project";
 import AddProject from "../forms/AddProject";
-
-interface Projects {
-  id: string;
-  name: string;
-  enterprise: string;
-  collaborators: {
-    name: string;
-    email: string;
-  }[];
-}
-
-interface Collaborator {
-  name: string;
-  email: string;
-}
+import { ProjectType, CollaboratorType } from "../types";
 
 const ProjectsList: React.FC = () => {
-  const [projects, setProjects] = useState<Projects[]>([]);
+  const [projects, setProjects] = useState<ProjectType[]>([]);
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
-  const handleSubmit = (value: Projects) => {
+  const handleSubmit = (value: ProjectType) => {
     if (value.id) {
       const newProjects = projects.map((project) => {
         return project.id === value.id ? value : project;
@@ -35,7 +21,15 @@ const ProjectsList: React.FC = () => {
     }
   };
 
-  const handleAddCollaborator = (id: string, value: Collaborator) => {
+  const handleDelete = (id: string) => {
+    setProjects(
+      projects.filter((project) => {
+        return project.id !== id;
+      })
+    );
+  };
+
+  const handleAddCollaborator = (id: string, value: CollaboratorType) => {
     const newProjectsArr = projects.map((project) => {
       if (project.id === id) {
         project.collaborators.push(value);
@@ -46,12 +40,18 @@ const ProjectsList: React.FC = () => {
     setProjects([...newProjectsArr]);
   };
 
-  const handleDelete = (id: string) => {
-    setProjects(
-      projects.filter((project) => {
-        return project.id !== id;
-      })
-    );
+  const handleDeleteCollaborator = (id: string, email: string) => {
+    const newProjectsArr = [];
+    for (const project of projects) {
+      if (project.id === id) {
+        const newArr = project.collaborators.filter(
+          (obj) => obj.email !== email
+        );
+        project.collaborators = newArr;
+      }
+      newProjectsArr.push(project);
+    }
+    setProjects([...newProjectsArr]);
   };
 
   const listOfProjects = projects.length ? (
@@ -62,6 +62,7 @@ const ProjectsList: React.FC = () => {
         projectItem={project}
         handleSubmit={handleSubmit}
         handleAddCollaborator={handleAddCollaborator}
+        handleDeleteCollaborator={handleDeleteCollaborator}
       />
     ))
   ) : (

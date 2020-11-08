@@ -2,33 +2,14 @@ import React from "react";
 import "./AddProject.css";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
-
-interface MyFormValues {
-  id: string;
-  name: string;
-  enterprise: string;
-  collaborators: {
-    name: string;
-    email: string;
-  }[];
-}
-
-interface Projects {
-  id: string;
-  name: string;
-  enterprise: string;
-  collaborators: {
-    name: string;
-    email: string;
-  }[];
-}
+import { ProjectType } from "../types";
 
 interface Props {
-  handleSubmit: (value: Projects) => void;
+  handleSubmit: (value: ProjectType) => void;
   setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   title: string;
   buttonText: string;
-  projects?: Projects;
+  projects?: ProjectType;
 }
 
 const ProjectSchema = Yup.object().shape({
@@ -45,7 +26,7 @@ const AddProject: React.FC<Props> = ({
 }) => {
   const closeIcon: string = require("../assets/close.svg").default;
 
-  const initialValues: MyFormValues = {
+  const initialValues: ProjectType = {
     id: projects ? projects.id : "",
     name: projects ? projects.name : "",
     enterprise: projects ? projects.enterprise : "",

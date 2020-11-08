@@ -3,34 +3,22 @@ import AddProject from "../forms/AddProject";
 import ModalTemplate from "../modals/ModalTemplate";
 import "./Project.css";
 import CollaboratorList from "./CollaboratorList";
-
-interface Projects {
-  id: string;
-  name: string;
-  enterprise: string;
-  collaborators: {
-    name: string;
-    email: string;
-  }[];
-}
-
-interface Collaborator {
-  name: string;
-  email: string;
-}
+import { ProjectType, CollaboratorType } from "../types";
 
 interface Props {
-  projectItem: Projects;
+  projectItem: ProjectType;
   handleDelete: (id: string) => void;
-  handleSubmit: (value: Projects) => void;
-  handleAddCollaborator: (id: string, value: Collaborator) => void;
+  handleSubmit: (value: ProjectType) => void;
+  handleAddCollaborator: (id: string, value: CollaboratorType) => void;
+  handleDeleteCollaborator: (id: string, email: string) => void;
 }
 
 const Project: React.FC<Props> = ({
   projectItem,
   handleDelete,
   handleSubmit,
-  handleAddCollaborator
+  handleAddCollaborator,
+  handleDeleteCollaborator
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [collaboratorModalIsOpen, setCollaboratorModalIsOpen] = useState<
@@ -58,6 +46,7 @@ const Project: React.FC<Props> = ({
               <CollaboratorList
                 projectItem={projectItem}
                 handleAddCollaborator={handleAddCollaborator}
+                handleDeleteCollaborator={handleDeleteCollaborator}
               />
             }
           />
