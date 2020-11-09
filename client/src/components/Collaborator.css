@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+
+.collaboratorBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.collaboratorContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 5px;
+  margin-bottom: 8px;
+}
+
+.collaboratorImage {
+  border-radius: 100%;
+  height: 24px;
+  width: 24px;
+}
+
+.collaboratorDetails {
+  margin-left: 10px;
+}
+
+.collaboratorDetails__title {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.collaboratorDetails__email {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.collaboratorDelete {
+  opacity: 0;
+  color: rgba(0, 158, 255, 1);
+  cursor: pointer;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  size: 12px;
+  line-height: 20px;
+}
+
+.collaboratorDelete:hover {
+  opacity: 1;
+}

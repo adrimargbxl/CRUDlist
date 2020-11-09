@@ -1,5 +1,5 @@
 import React from "react";
-import "./AddProject.css";
+import "./AddOrEditProject.css";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { ProjectType } from "../types";
@@ -17,7 +17,7 @@ const ProjectSchema = Yup.object().shape({
   enterprise: Yup.string().required("Cannot be blank")
 });
 
-const AddProject: React.FC<Props> = ({
+const AddOrEditProject: React.FC<Props> = ({
   handleSubmit,
   setModalIsOpen,
   title,
@@ -89,4 +89,4 @@ const AddProject: React.FC<Props> = ({
   );
 };
 
-export default AddProject;
+export default AddOrEditProject;

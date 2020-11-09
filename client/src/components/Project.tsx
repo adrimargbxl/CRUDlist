@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AddProject from "../forms/AddProject";
+import AddOrEditProject from "../forms/AddOrEditProject";
 import ModalTemplate from "../modals/ModalTemplate";
 import "./Project.css";
 import CollaboratorList from "./CollaboratorList";
@@ -27,7 +27,7 @@ const Project: React.FC<Props> = ({
   const deleteIcon: string = require("../assets/delete.svg").default;
   return (
     <div className="projectContainer">
-      <div className="project">
+      <div>
         <div className="project__title">{projectItem.name}</div>
         <div className="project__collaborators">
           {projectItem.collaborators ? projectItem.collaborators.length : 0}{" "}
@@ -57,7 +57,7 @@ const Project: React.FC<Props> = ({
             setModalIsOpen={setModalIsOpen}
             icon="edit"
             form={
-              <AddProject
+              <AddOrEditProject
                 title='Edit "Project Name"'
                 setModalIsOpen={setModalIsOpen}
                 handleSubmit={handleSubmit}

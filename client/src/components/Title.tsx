@@ -3,7 +3,7 @@ import "./Title.css";
 
 const Title: React.FC = () => {
   return (
-    <div className="title">
+    <div className="page__title">
       Welcome to your <br></br>
       projects board
     </div>

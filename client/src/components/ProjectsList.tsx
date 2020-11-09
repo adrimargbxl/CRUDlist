@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import faker from "faker";
 import "./ProjectList.css";
 import ModalTemplate from "../modals/ModalTemplate";
 import Project from "./Project";
-import AddProject from "../forms/AddProject";
+import AddOrEditProject from "../forms/AddOrEditProject";
 import { ProjectType, CollaboratorType } from "../types";
 
 const ProjectsList: React.FC = () => {
@@ -73,13 +74,13 @@ const ProjectsList: React.FC = () => {
     <div className="listContainer">
       <div className="listContainer__header">
         <div className="listContainer__header__title">Projects</div>
-        <div className="listContainer__header__modal">
+        <div>
           <ModalTemplate
             modalIsOpen={modalIsOpen}
             setModalIsOpen={setModalIsOpen}
             icon={"plus"}
             form={
-              <AddProject
+              <AddOrEditProject
                 buttonText={"Add Project"}
                 title={"Add Project"}
                 setModalIsOpen={setModalIsOpen}
@@ -89,7 +90,7 @@ const ProjectsList: React.FC = () => {
           />
         </div>
       </div>
-      <div className="listContainer__list">{listOfProjects}</div>
+      <div>{listOfProjects}</div>
     </div>
   );
 };

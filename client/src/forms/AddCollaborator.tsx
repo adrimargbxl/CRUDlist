@@ -1,7 +1,6 @@
 import React from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
-import faker from "faker";
 import { ProjectType, CollaboratorType } from "../types";
 
 interface Props {
@@ -18,8 +17,7 @@ const AddCollaborator: React.FC<Props> = ({
   handleAddCollaborator
 }) => {
   const initialValues: CollaboratorType = {
-    image: faker.image.avatar(),
-    name: faker.name.findName(),
+    name: "",
     email: ""
   };
   const addCollaboratorIcon: string = require("../assets/addCollaboratorFormButton.svg")
