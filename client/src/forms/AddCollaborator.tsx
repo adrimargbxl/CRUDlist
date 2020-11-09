@@ -50,7 +50,7 @@ const AddCollaborator: React.FC<Props> = ({
             </div>
 
             <button className="collaboratorButton" type="submit">
-              <img src={addCollaboratorIcon} alt="" />
+              <img src={addCollaboratorIcon} alt="addCollaboratorIcon" />
             </button>
           </div>
         </Form>

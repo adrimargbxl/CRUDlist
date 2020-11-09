@@ -1,5 +1,14 @@
+.collaborator__header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .collaborators__title {
   margin-bottom: 41px;
+}
+
+.collaborators__close {
+  cursor: pointer;
 }
 
 .noItem {

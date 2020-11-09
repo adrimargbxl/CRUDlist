@@ -38,7 +38,11 @@ const AddOrEditProject: React.FC<Props> = ({
       <div className="addProjectHeaderContainer">
         <div className="addProjectHeaderContainer__title">{title}</div>
         <div className="closeIcon">
-          <img onClick={() => setModalIsOpen(false)} src={closeIcon} alt="" />
+          <img
+            onClick={() => setModalIsOpen(false)}
+            src={closeIcon}
+            alt="closeIcon"
+          />
         </div>
       </div>
       <Formik

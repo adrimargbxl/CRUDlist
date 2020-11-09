@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import faker from "faker";
 import "./ProjectList.css";
 import ModalTemplate from "../modals/ModalTemplate";
 import Project from "./Project";

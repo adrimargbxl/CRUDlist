@@ -44,6 +44,7 @@ const Project: React.FC<Props> = ({
             icon="addCollaborator"
             form={
               <CollaboratorList
+                setCollaboratorModalIsOpen={setCollaboratorModalIsOpen}
                 projectItem={projectItem}
                 handleAddCollaborator={handleAddCollaborator}
                 handleDeleteCollaborator={handleDeleteCollaborator}
@@ -73,7 +74,7 @@ const Project: React.FC<Props> = ({
           }}
           className="projectOptions__icon"
         >
-          <img src={deleteIcon} alt="" />
+          <img src={deleteIcon} alt="deleteIcon" />
         </div>
       </div>
     </div>

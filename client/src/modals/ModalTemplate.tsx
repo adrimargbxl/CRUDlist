@@ -36,9 +36,10 @@ const ModalTemplate: React.FC<Props> = ({
   return (
     <div>
       <div onClick={() => setModalIsOpen(true)}>
-        <img src={selectedIcon} alt="" />
+        <img src={selectedIcon} alt="selectedIcon" />
       </div>
       <Modal
+        ariaHideApp={false}
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
         style={customStyles}
