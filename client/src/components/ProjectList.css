@@ -6,7 +6,7 @@
   margin-top: 30px;
   width: 442px;
   padding: 24px;
-  height: 384px;
+  height: 45%;
 }
 
 .listContainer__header {
@@ -19,4 +19,21 @@
 .listContainer__header__title {
   font-weight: 500;
   font-size: 24px;
+}
+
+.listContainer__header__icon {
+  cursor: pointer;
+}
+
+.projectContainer:last-child {
+  border-bottom: none;
+}
+
+.projectList {
+  overflow: auto;
+  max-height: 80%;
+}
+
+.projectList::-webkit-scrollbar {
+  display: none;
 }

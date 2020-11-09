@@ -1,6 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
+import "./AddCollaborator.css";
 import { ProjectType, CollaboratorType } from "../types";
 
 interface Props {
@@ -23,20 +24,21 @@ const AddCollaborator: React.FC<Props> = ({
   const addCollaboratorIcon: string = require("../assets/addCollaboratorFormButton.svg")
     .default;
   return (
-    <div>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={ProjectSchema}
-        onSubmit={(values, actions) => {
-          handleAddCollaborator(projectItem.id, values);
-          actions.setSubmitting(false);
-        }}
-      >
-        {({ errors, touched }) => (
-          <Form>
-            <div className="field">
+    <Formik
+      initialValues={initialValues}
+      validationSchema={ProjectSchema}
+      onSubmit={(values, actions) => {
+        handleAddCollaborator(projectItem.id, values);
+        actions.setSubmitting(false);
+        actions.resetForm();
+      }}
+    >
+      {({ errors, touched }) => (
+        <Form>
+          <div className="AddCollaboratorFormContainer">
+            <div>
               <Field
-                className="field__box email"
+                className="field__box__collaborator"
                 placeholder="ex: firstname.lastname@provider.com"
                 type="text"
                 id="email"
@@ -47,13 +49,13 @@ const AddCollaborator: React.FC<Props> = ({
               ) : null}
             </div>
 
-            <button type="submit">
+            <button className="collaboratorButton" type="submit">
               <img src={addCollaboratorIcon} alt="" />
             </button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+          </div>
+        </Form>
+      )}
+    </Formik>
   );
 };
 

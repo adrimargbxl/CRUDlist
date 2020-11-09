@@ -4,7 +4,7 @@ import Modal from "react-modal";
 const customStyles = {
   content: {
     width: "522px",
-    height: "auto",
+    maxHeight: "45%",
     borderRadius: "25px",
     top: "27%",
     left: "50%",
@@ -39,7 +39,6 @@ const ModalTemplate: React.FC<Props> = ({
         <img src={selectedIcon} alt="" />
       </div>
       <Modal
-        portalClassName="modal"
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
         style={customStyles}

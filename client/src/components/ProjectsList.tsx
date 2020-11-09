@@ -31,14 +31,19 @@ const ProjectsList: React.FC = () => {
   };
 
   const handleAddCollaborator = (id: string, value: CollaboratorType) => {
-    const newProjectsArr = projects.map((project) => {
-      if (project.id === id) {
+    const newProjectArr: ProjectType[] = [];
+    for (let project of projects) {
+      if (
+        project.id === id &&
+        project.collaborators.find((obj) => obj.email === value.email)
+      ) {
+        return alert("email already exists");
+      } else if (project.id === id) {
         project.collaborators.push(value);
-        return project;
       }
-      return project;
-    });
-    setProjects([...newProjectsArr]);
+      newProjectArr.push(project);
+    }
+    setProjects([...newProjectArr]);
   };
 
   const handleDeleteCollaborator = (id: string, email: string) => {
@@ -67,14 +72,14 @@ const ProjectsList: React.FC = () => {
       />
     ))
   ) : (
-    <div>please add project</div>
+    <div className="noItem">please add project</div>
   );
 
   return (
     <div className="listContainer">
       <div className="listContainer__header">
         <div className="listContainer__header__title">Projects</div>
-        <div>
+        <div className="listContainer__header__icon">
           <ModalTemplate
             modalIsOpen={modalIsOpen}
             setModalIsOpen={setModalIsOpen}
@@ -90,7 +95,7 @@ const ProjectsList: React.FC = () => {
           />
         </div>
       </div>
-      <div>{listOfProjects}</div>
+      <div className="projectList">{listOfProjects}</div>
     </div>
   );
 };

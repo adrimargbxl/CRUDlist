@@ -8,11 +8,15 @@
   line-height: 24px;
 }
 
+.closeIcon {
+  cursor: pointer;
+}
+
 .field {
   display: flex;
   flex-direction: column;
   margin-left: 5px;
-  margin-right: 7px;
+  margin-right: 0px;
   margin-bottom: 20px;
 }
 
@@ -61,4 +65,5 @@ input[type="text"] {
   color: #ffffff;
   border: none;
   float: right;
+  cursor: pointer;
 }

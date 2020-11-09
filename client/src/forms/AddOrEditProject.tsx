@@ -37,7 +37,7 @@ const AddOrEditProject: React.FC<Props> = ({
     <div>
       <div className="addProjectHeaderContainer">
         <div className="addProjectHeaderContainer__title">{title}</div>
-        <div>
+        <div className="closeIcon">
           <img onClick={() => setModalIsOpen(false)} src={closeIcon} alt="" />
         </div>
       </div>

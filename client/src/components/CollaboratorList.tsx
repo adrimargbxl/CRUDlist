@@ -1,4 +1,5 @@
 import React from "react";
+import "./CollaboratorList.css";
 import AddCollaborator from "../forms/AddCollaborator";
 import Collaborator from "./Collaborator";
 import { ProjectType, CollaboratorType } from "../types";
@@ -25,12 +26,12 @@ const CollaboratorList: React.FC<Props> = ({
       );
     })
   ) : (
-    <div>no collaborators</div>
+    <div className="noItem">no collaborators</div>
   );
   return (
     <div>
       <div className="collaborators__title">User Settings</div>
-      <div>{listOfCollaborators}</div>
+      <div className="collaboratorList">{listOfCollaborators}</div>
       <AddCollaborator
         handleAddCollaborator={handleAddCollaborator}
         projectItem={projectItem}

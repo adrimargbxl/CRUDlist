@@ -1,0 +1,13 @@
+.collaborators__title {
+  margin-bottom: 41px;
+}
+
+.noItem {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.collaboratorBox:last-child {
+  border-bottom: none;
+}
