@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CollaboratorList.css";
 import AddCollaborator from "../forms/AddCollaborator";
 import Collaborator from "./Collaborator";
 import { ProjectType, CollaboratorType } from "../types";
+import { boolean, string } from "yup";
 
 interface Props {
   projectItem: ProjectType;
@@ -19,6 +20,10 @@ const CollaboratorList: React.FC<Props> = ({
   handleDeleteCollaborator,
   setCollaboratorModalIsOpen
 }) => {
+  const [showForm, setShowForm] = React.useState<{
+    status: boolean;
+    hide: string;
+  }>({ status: false, hide: "" });
   const listOfCollaborators = projectItem.collaborators.length ? (
     projectItem.collaborators.map((item, i) => {
       return (
@@ -37,15 +42,34 @@ const CollaboratorList: React.FC<Props> = ({
     <div>
       <div className="collaborator__header">
         <div className="collaborators__title">User Settings</div>
-        <div onClick={() => setCollaboratorModalIsOpen(false)}>
+        <div
+          className="collaborators__close"
+          onClick={() => setCollaboratorModalIsOpen(false)}
+        >
           <img src={closeIcon} alt="closeIcon" />
         </div>
       </div>
       <div className="collaboratorList">{listOfCollaborators}</div>
-      <AddCollaborator
-        handleAddCollaborator={handleAddCollaborator}
-        projectItem={projectItem}
-      />
+      <div
+        onClick={(e) => {
+          e.preventDefault();
+          setShowForm({ status: true, hide: "none" });
+        }}
+      >
+        <div
+          style={{
+            display: showForm.hide
+          }}
+        >
+          Invite new users
+        </div>
+      </div>
+      {showForm.status ? (
+        <AddCollaborator
+          handleAddCollaborator={handleAddCollaborator}
+          projectItem={projectItem}
+        />
+      ) : null}
     </div>
   );
 };
