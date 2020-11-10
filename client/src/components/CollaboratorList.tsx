@@ -51,6 +51,7 @@ const CollaboratorList: React.FC<Props> = ({
       </div>
       <div className="collaboratorList">{listOfCollaborators}</div>
       <div
+        className="footer"
         onClick={(e) => {
           e.preventDefault();
           setShowForm({ status: true, hide: "none" });
@@ -58,7 +59,12 @@ const CollaboratorList: React.FC<Props> = ({
       >
         <div
           style={{
-            display: showForm.hide
+            fontSize: "12px",
+            justifyContent: "center",
+            cursor: "pointer",
+            display: showForm.hide,
+            marginTop: "20px",
+            fontWeight: "normal"
           }}
         >
           Invite new users

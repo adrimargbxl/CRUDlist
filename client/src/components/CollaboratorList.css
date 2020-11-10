@@ -20,3 +20,8 @@
 .collaboratorBox:last-child {
   border-bottom: none;
 }
+
+.footer {
+  display: flex;
+  justify-content: center;
+}

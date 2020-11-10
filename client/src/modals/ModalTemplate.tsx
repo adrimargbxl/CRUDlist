@@ -1,5 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
+import { CSSTransition } from "react-transition-group";
+import "./ModalTemplate.css";
 
 const customStyles = {
   content: {
@@ -38,14 +40,22 @@ const ModalTemplate: React.FC<Props> = ({
       <div onClick={() => setModalIsOpen(true)}>
         <img src={selectedIcon} alt="selectedIcon" />
       </div>
-      <Modal
-        ariaHideApp={false}
-        isOpen={modalIsOpen}
-        onRequestClose={() => setModalIsOpen(false)}
-        style={customStyles}
+      <CSSTransition
+        in={modalIsOpen}
+        timeout={300}
+        classNames="dialog"
+        unmountOnExit
       >
-        {form}
-      </Modal>
+        <Modal
+          closeTimeoutMS={500}
+          ariaHideApp={false}
+          isOpen={modalIsOpen}
+          onRequestClose={() => setModalIsOpen(false)}
+          style={customStyles}
+        >
+          {form}
+        </Modal>
+      </CSSTransition>
     </div>
   );
 };
