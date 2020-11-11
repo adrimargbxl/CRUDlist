@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./CollaboratorList.css";
 import AddCollaborator from "../forms/AddCollaborator";
 import Collaborator from "./Collaborator";
 import { ProjectType, CollaboratorType } from "../types";
-import { boolean, string } from "yup";
 
 interface Props {
   projectItem: ProjectType;
